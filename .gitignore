@@ -1,6 +1,6 @@
 .DS_Store
 .eslintcache
-.idea/*
+.idea
 
 node_modules
 dist
