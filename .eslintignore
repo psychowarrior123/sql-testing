@@ -1,0 +1,7 @@
+/dist
+/babelCache
+/.awcache
+/src/.DS_Store
+/node_modules
+/src/assets
+webpack.config.js
