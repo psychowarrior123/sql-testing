@@ -4,8 +4,6 @@ module.exports = {
     // backend data models have keys with underscore
     camelcase: 'off',
 
-    'no-restricted-globals': ['debug'],
-
     /*
         Enforce a convention in module import order
         https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
