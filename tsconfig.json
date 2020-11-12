@@ -20,6 +20,7 @@
     "paths": {
       "assets/*": ["assets/*"],
       "components/*": ["components/*"],
+      "context/*": ["context/*"],
       "hooks/*": ["hooks/*"],
       "pages/*": ["pages/*"],
       "store/*": ["store/*"],

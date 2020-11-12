@@ -82,6 +82,7 @@ const getWebpackConfig = (env, { analyze, mode }) => {
       alias: {
         assets: path.resolve(__dirname, 'src', 'assets'),
         components: path.resolve(__dirname, 'src', 'components'),
+        context: path.resolve(__dirname, 'src', 'context'),
         utils: path.resolve(__dirname, 'src', 'utils'),
         generatedApi: path.resolve(__dirname, 'src', 'generated'),
         store: path.resolve(__dirname, 'src', 'store'),

@@ -1,16 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
+import { AuthHandler } from 'components/AuthHandler';
 import { Navigation } from 'components/Navigation';
 import { Routes } from 'components/Routes';
 
-const App = (): JSX.Element => (
-  <Router>
-    <div>
-      <Navigation />
-      <Routes />
-    </div>
-  </Router>
-);
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <AuthHandler>
+        <Navigation />
+        <hr />
+        <Routes />
+      </AuthHandler>
+    </BrowserRouter>
+  );
+};
 
 export default App;

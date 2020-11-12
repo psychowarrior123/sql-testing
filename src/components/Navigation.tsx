@@ -1,17 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
-export const Navigation = (): JSX.Element => (
+export const Navigation: FC<any> = () => (
   <nav>
     <ul>
       <li>
-        <Link to="/">First page</Link>
+        <NavLink to="/" activeStyle={{ color: 'green' }} exact>
+          First page
+        </NavLink>
       </li>
       <li>
-        <Link to="/second">Second Page</Link>
+        <NavLink to="/second" exact>
+          Second Page
+        </NavLink>
       </li>
       <li>
-        <Link to="/third">Third page</Link>
+        <NavLink to="/third" exact>
+          Third page
+        </NavLink>
       </li>
     </ul>
   </nav>
