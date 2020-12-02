@@ -1,5 +1,12 @@
 module.exports = {
   extends: ['bizone/typescript'],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
   rules: {
     // backend data models have keys with underscore
     camelcase: 'off',

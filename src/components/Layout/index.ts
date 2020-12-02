@@ -1,20 +1,19 @@
-import Container from './Container/Layout-Container';
-import Header from './Header/Layout-Header';
+import Flex from './Flex/Layout-Flex';
 import Layout from './Layout';
-import Page from './Page/Layout-Page';
-import PageControls from './PageControls/Layout-PageControls';
-import PageHeader from './PageHeader/Layout-PageHeader';
-import Panels from './Panels';
-import Sidebar from './Sidebar/Layout-Sidebar';
+import Login from './Login/Layout-Login';
+import Promo from './Promo/Layout-Promo';
 
 Object.assign(Layout, {
-  Container,
-  Header,
-  Page,
-  PageControls,
-  PageHeader,
-  Panels,
-  Sidebar,
+  // Container,
+  // Header,
+  Flex,
+  Login,
+  Promo,
+  // Page,
+  // PageControls,
+  // PageHeader,
+  // Panels,
+  // Sidebar,
 });
 
 export default Layout;

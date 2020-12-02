@@ -9,13 +9,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 /* const APP_NAME = 'Some app name' **/
 const APP_NAME = '';
 
-const DEBUG_HOST = 'localhost';
+const DEBUG_HOST = 'cpt.local';
 const DEBUG_PORT = '8086';
 
 const BASE_DIR = process.env.BASE_DIR || '';
 const BASE_URL = process.env.BASE_URL || '/api';
-const DEV_PROXY = process.env.DEV_PROXY || 'https://10.1.2.29';
+// const BASE_URL = process.env.BASE_URL || 'http://10.3.89.69:8000/';
+// const DEV_PROXY = process.env.DEV_PROXY || 'https://10.1.2.29';
+const DEV_PROXY = process.env.DEV_PROXY || 'http://10.3.89.69:8000';
 const MODULES_PATH = path.resolve(__dirname, 'node_modules');
+
+const sourceFolder = 'src';
 
 /* EXTERNAL LIBRARIES **/
 const EXTERNALS_TO_TRANSPILE = [path.resolve(MODULES_PATH, 'debug')];
@@ -40,6 +44,7 @@ const getWebpackPlugins = (isProduction, analyze) => {
       webpack: {
         isProduction,
         APP_NAME: JSON.stringify(APP_NAME),
+        BASE_URL: JSON.stringify(BASE_URL),
         IS_DEV_BUILD: JSON.stringify(IS_DEV_BUILD),
       },
     }),
@@ -88,8 +93,10 @@ const getWebpackConfig = (env, { analyze, mode }) => {
         store: path.resolve(__dirname, 'src', 'store'),
         pages: path.resolve(__dirname, 'src', 'pages'),
         hooks: path.resolve(__dirname, 'src', 'hooks'),
+        services: path.resolve(__dirname, 'src', 'services'),
       },
       extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+      modules: [path.resolve(__dirname, sourceFolder), 'node_modules'],
     },
     optimization: {
       runtimeChunk: isProduction ? 'multiple' : undefined,
@@ -151,15 +158,13 @@ const getWebpackConfig = (env, { analyze, mode }) => {
       host: DEBUG_HOST,
       port: DEBUG_PORT,
       contentBase: path.resolve(__dirname, 'dist'),
-      historyApiFallback: {
-        disableDotRule: true,
-        index: `/${BASE_DIR}`,
-      },
+      historyApiFallback: true,
       proxy: {
         [BASE_URL]: {
           target: DEV_PROXY,
           changeOrigin: true,
           secure: false,
+          pathRewrite: { '^/api': '' },
         },
       },
     },

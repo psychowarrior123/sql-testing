@@ -23,6 +23,7 @@
       "context/*": ["context/*"],
       "hooks/*": ["hooks/*"],
       "pages/*": ["pages/*"],
+      "services/*": ["services/*"],
       "store/*": ["store/*"],
       "utils/*": ["utils/*"]
     }

@@ -1,44 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Route, useLocation } from 'react-router-dom';
 
-import { AuthContext } from 'context/AuthContext';
+import { Overlay } from '@bizone/ui-bundle/esm/Overlay';
 
-import { LoginPage } from 'pages/LoginPage';
+import { AuthValidation } from 'components/AuthValidation';
 
-import { AuthValidation } from './AuthValidation';
+const LazyLogin = lazy(() => import('../pages/Login'));
 
 export const AuthHandler: React.FC<any> = ({ children }) => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [pathname, setPathname] = useState<string>();
   const location = useLocation();
 
-  /**
-   * When application is staring, we need to save
-   * path of that page, that user wanted to open
-   * at the first place
-   */
   useEffect(() => {
     if (!pathname) {
-      setPathname(location.pathname);
+      setPathname(location.pathname === '/login' ? '/' : location.pathname);
     }
   }, [location.pathname, pathname]);
 
   return (
-    <AuthContext.Provider
-      value={{
-        isUserLoggedIn,
-        setIsUserLoggedIn,
-      }}
-    >
+    <>
       <AuthValidation>{children}</AuthValidation>
-      {/* Login page should not be in a Switch. We don't
-            to show nav-bar to user, that is not logged in */}
       <Route
         path="/login"
         render={() => {
-          return <LoginPage pathname={pathname} />;
+          return (
+            <Suspense fallback={<Overlay fullscreen loader />}>
+              <LazyLogin pathname={pathname} />
+            </Suspense>
+          );
         }}
       />
-    </AuthContext.Provider>
+    </>
   );
 };

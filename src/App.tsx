@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import '@bizone/ui-bundle/esm/bundle.css';
+import React, { lazy } from 'react';
 
 import { AuthHandler } from 'components/AuthHandler';
 import { Navigation } from 'components/Navigation';
@@ -7,13 +7,11 @@ import { Routes } from 'components/Routes';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <AuthHandler>
-        <Navigation />
-        <hr />
-        <Routes />
-      </AuthHandler>
-    </BrowserRouter>
+    <AuthHandler>
+      <Navigation />
+      <hr />
+      <Routes />
+    </AuthHandler>
   );
 };
 

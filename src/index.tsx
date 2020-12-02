@@ -1,10 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const render = async (): Promise<void> => {
-  const App = (await import(/* webpackChunkName: "App" */ './App')).default;
+import { NotificationContainer } from '@bizone/notifications';
 
-  ReactDOM.render(<App />, document.getElementById('root'));
-};
+import App from 'App';
+import GlobalStyles from 'theme/global';
 
-render();
+render(
+  <Router>
+    <GlobalStyles />
+    <Route component={App} />
+    <NotificationContainer />
+  </Router>,
+  document.getElementById('root'),
+);

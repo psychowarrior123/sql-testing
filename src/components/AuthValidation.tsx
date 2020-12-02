@@ -1,47 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { AuthContext } from 'context/AuthContext';
+import { observer } from 'mobx-react-lite';
 
-export const AuthValidation: React.FC<any> = ({ children }) => {
-  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(AuthContext);
+import { AuthStoreContext } from 'stores/AuthStore';
 
-  // Before rendering pages, we need to make sure
-  // that user was not previously logged in
-  const [isGettingDataFromLS, setIsGettingDataFromLS] = useState(true);
+export const AuthValidation: React.FC<any> = observer(({ children }) => {
+  const { fetchProfile, isAuthorized } = useContext(AuthStoreContext);
 
   useEffect(() => {
-    // Get "isUserLoggedIn" key from a local storage
-    const isPreviouslyLoggedIn = localStorage.getItem('isUserLoggedIn');
+    fetchProfile();
+  }, [fetchProfile]);
 
-    // if user was previously logged in
-    // "isPreviouslyLoggedIn" will equal to "true"
-    if (isPreviouslyLoggedIn) {
-      setIsUserLoggedIn(true);
-
-      // we need this flag for some timeout.
-      // Without it - application will return <children>
-      // and we don't want that.
-      setIsGettingDataFromLS(false);
-    } else {
-      // if user wasn't previously logged in
-      // "isPreviouslyLoggedIn" will equal to "null"
-      setIsGettingDataFromLS(false);
-    }
-  }, [setIsUserLoggedIn]);
-
-  // Show a nice "Loader" when getting data from localStorage
-  if (isGettingDataFromLS) {
-    return (
-      <div>
-        <h2>Getting data from LS</h2>
-      </div>
-    );
-  }
-
-  // If user was previously logged-in - render application
-  if (isUserLoggedIn) {
+  if (isAuthorized) {
     return children;
   }
+
   return <Redirect to="/login" />;
-};
+});
