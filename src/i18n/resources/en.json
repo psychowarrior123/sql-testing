@@ -1,0 +1,19 @@
+{
+  "common": {
+    "Button": {
+      "login": "Login"
+    },
+    "Forms": {
+      "titles": {
+        "email": "Email",
+        "password": "Password"
+      }
+    },
+    "Titles": {
+      "login": "Login",
+      "promo": {
+        "desc": "Continuous external IT perimeter <1/> monitoring  as a service"
+      }
+    }
+  }
+}

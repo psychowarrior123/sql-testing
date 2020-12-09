@@ -16,6 +16,10 @@ class AuthService {
 
   /* LOGOUT */
 
+  logout = async (): Promise<any> => {
+    await api.post('logout/', null);
+  };
+
   /*  PROFILE  */
 
   fetchProfile = async (): Promise<TProfile> => {

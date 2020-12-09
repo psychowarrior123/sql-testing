@@ -1,4 +1,4 @@
-const PREFIX = 'LTI';
+const PREFIX = webpack.APP_NAME;
 
 const registerAsGlobal = function (variable, data, useSafePrefix = true) {
   if (!webpack.IS_DEV_BUILD) {

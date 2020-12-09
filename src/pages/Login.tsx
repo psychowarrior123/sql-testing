@@ -1,5 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation, Trans } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 
 import { Button } from '@bizone/ui-bundle/esm/Button';
@@ -51,7 +52,7 @@ const PromoDescription = styled(withCls(Text))`
   letter-spacing: normal;
   color: rgb(255, 255, 255);
   opacity: 0.4;
-  white-space: nowrap;
+  white-space: wrap;
 `;
 
 const Logo = styled.img.attrs((props) => ({
@@ -76,6 +77,7 @@ interface ILoginForm {
 }
 
 const LoginPage: FC<any> = observer(({ pathname }: { pathname: string }) => {
+  const [t] = useTranslation('common');
   const { authorize, isAuthorized } = useContext(AuthStoreContext);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState('');
@@ -118,8 +120,9 @@ const LoginPage: FC<any> = observer(({ pathname }: { pathname: string }) => {
               Testing
             </PromoTitle>
             <PromoDescription>
-              Сервис непрерывного мониторинга <br />
-              внешнего IT-периметра
+              <Trans i18nKey="common:Titles.promo.desc">
+                Continuous external IT perimeter <br /> monitoring as a service
+              </Trans>
             </PromoDescription>
           </PromoHeader>
         </PromoContainer>
@@ -127,26 +130,27 @@ const LoginPage: FC<any> = observer(({ pathname }: { pathname: string }) => {
       <Layout.Login>
         <form onSubmit={handleSubmit(onSubmit)}>
           <HeaderContainer>
-            <Header size={20}>Вход</Header>
+            <Header size={20}>{t('common:Titles.login')}</Header>
           </HeaderContainer>
           <FormContainer>
-            <FormItem label="Email">
+            <FormItem label={t('common:Forms.titles.email')}>
               <InputController
                 name="email"
                 errors={errors}
                 fluid
-                placeholder="Email"
+                placeholder="admin@mail.com"
                 control={control}
-                icon="profile"
+                icon="letter"
               />
             </FormItem>
 
-            <FormItem label="Password">
+            <FormItem label={t('common:Forms.titles.password')}>
               <InputController
                 name="password"
                 errors={errors}
                 fluid
                 control={control}
+                placeholder="P@ssw0rd"
                 type="password"
                 icon="key"
               />
@@ -154,7 +158,7 @@ const LoginPage: FC<any> = observer(({ pathname }: { pathname: string }) => {
 
             <FormItem>
               <Button loading={processing} primary rich fluid type="submit">
-                Войти
+                {t('common:Button.login')}
               </Button>
             </FormItem>
 

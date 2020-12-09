@@ -2,6 +2,8 @@ import React, { FC, lazy, memo } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { AppRoute, AppRoutes } from 'app-models/Routing';
+import Layout from 'components/Layout';
+import NavigationBar from 'components/NavigationBar';
 
 export const getRoutes = (): AppRoute[] => [
   {
@@ -10,6 +12,12 @@ export const getRoutes = (): AppRoute[] => [
     isDefault: true,
     component: lazy(
       () => import(/* webpackChunkName: "dashboard" */ './pages/Dashboard'),
+    ),
+  },
+  {
+    key: AppRoutes.notfound,
+    component: lazy(
+      () => import(/* webpackChunkName: "dashboard" */ './pages/NotFound'),
     ),
   },
 ];
@@ -24,15 +32,22 @@ export const Routes: FC = memo(() => {
   const routesList = getRoutes();
 
   return (
-    <Switch>
-      {routesList.map((route: AppRoute) => (
-        <Route
-          key={route.path}
-          path={route.path.substr(1)}
-          component={route.component}
-        />
-      ))}
-      <Redirect to={defaultRoute.path.substr(1)} />
-    </Switch>
+    <Layout direction="column">
+      <Layout.Header>
+        <NavigationBar />
+      </Layout.Header>
+      <Layout.Page>
+        <Switch>
+          {routesList.map((route: AppRoute) => (
+            <Route
+              key={route.key}
+              path={route.path}
+              component={route.component}
+            />
+          ))}
+          <Redirect exact from="/" to={defaultRoute.path} />
+        </Switch>
+      </Layout.Page>
+    </Layout>
   );
 });

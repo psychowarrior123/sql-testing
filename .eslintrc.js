@@ -1,5 +1,6 @@
 module.exports = {
   extends: ['bizone/typescript'],
+  plugins: ['prettier'],
   settings: {
     'import/resolver': {
       node: {
@@ -8,6 +9,8 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': ['error'],
+
     // backend data models have keys with underscore
     camelcase: 'off',
 

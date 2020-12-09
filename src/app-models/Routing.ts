@@ -6,11 +6,12 @@ export enum AppRoutes {
   dashboard = 'dashboard',
   profile = 'profile',
   login = 'login',
+  notfound = 'notfound',
 }
 
 export interface AppRoute {
   key: AppRoutes;
-  path: string;
+  path?: string;
   isDefault?: boolean;
   component: LazyExoticComponent<ComponentType<any>>;
 }

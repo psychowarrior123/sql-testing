@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 const Dashboard: FC = (props: any) => {
-  return <span>Dashboard</span>;
+  return <h1>Dashboard</h1>;
 };
 
 export default Dashboard;

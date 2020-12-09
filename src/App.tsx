@@ -1,17 +1,18 @@
 import '@bizone/ui-bundle/esm/bundle.css';
-import React, { lazy } from 'react';
+import React from 'react';
+
+import { ThemeProvider, theme } from '@combinezone/theme';
 
 import { AuthHandler } from 'components/AuthHandler';
-import { Navigation } from 'components/Navigation';
-import { Routes } from 'components/Routes';
+import { Routes } from 'routes';
 
 const App: React.FC = () => {
   return (
-    <AuthHandler>
-      <Navigation />
-      <hr />
-      <Routes />
-    </AuthHandler>
+    <ThemeProvider theme={theme}>
+      <AuthHandler>
+        <Routes />
+      </AuthHandler>
+    </ThemeProvider>
   );
 };
 

@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /* const APP_NAME = 'Some app name' **/
-const APP_NAME = '';
+const APP_NAME = 'CPT';
 
 const DEBUG_HOST = 'cpt.local';
 const DEBUG_PORT = '8086';
@@ -22,7 +22,10 @@ const MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const sourceFolder = 'src';
 
 /* EXTERNAL LIBRARIES **/
-const EXTERNALS_TO_TRANSPILE = [path.resolve(MODULES_PATH, 'debug')];
+const EXTERNALS_TO_TRANSPILE = [
+  path.resolve(MODULES_PATH, 'debug'),
+  path.resolve(MODULES_PATH, '@combinezone'),
+];
 
 /* Determine favicon path in your project **/
 const FAVICON_PATH = undefined;

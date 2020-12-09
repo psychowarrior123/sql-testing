@@ -12,6 +12,10 @@ const LayoutWrapper = styled.div<IProps>`
   min-width: 1280;
   overflow: hidden;
   position: relative;
+
+  & .LayoutHeader {
+    z-index: 30;
+  }
 `;
 
 export default {
