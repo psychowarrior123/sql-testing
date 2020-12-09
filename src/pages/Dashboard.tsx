@@ -1,7 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
+
+import { Header } from '@bizone/ui-bundle/esm/Header';
 
 const Dashboard: FC = (props: any) => {
-  return <h1>Dashboard</h1>;
+  return <Header>Dashboard</Header>;
 };
 
 export default Dashboard;

@@ -15,5 +15,11 @@
         "desc": "Continuous external IT perimeter <1/> monitoring  as a service"
       }
     }
+  },
+  "pages": {
+    "NotFound": {
+      "title": "404. Page not found",
+      "message": "The requested URL was not found on this server"
+    }
   }
 }

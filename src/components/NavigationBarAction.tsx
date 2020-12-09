@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useMemo } from 'react';
 import {
   useHistory,
   useLocation,
@@ -57,7 +57,7 @@ const Action: FC<ActionProps> = ({
   link,
   onClick,
 }) => {
-  const dropdownEvent = `navbar-dropdown-${nanoid()}`;
+  const dropdownEvent = useMemo(() => `navbar-dropdown-${nanoid()}`, []);
   const history = useHistory();
   const location = useLocation();
 
@@ -66,7 +66,7 @@ const Action: FC<ActionProps> = ({
   const Component = (
     <ActionContainer
       active={active}
-      onClick={() => (link ? history.push(link) : onClick)}
+      onClick={link ? () => history.push(link) : onClick}
     >
       {icon && <Icon size={24} glyph={icon} />}
       {children && <Text>{children}</Text>}

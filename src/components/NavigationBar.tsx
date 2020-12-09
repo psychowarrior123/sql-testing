@@ -1,12 +1,17 @@
 import React, { FC, useContext } from 'react';
 
+import { Node } from '@bizone/ui-bundle/esm/Node';
 import { Text } from '@bizone/ui-bundle/esm/Text';
+import { observer } from 'mobx-react-lite';
+import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 
 import Brand from 'components/Brand';
 import Link from 'components/Link';
 import Action, { Item, Splitter } from 'components/NavigationBarAction';
+import { languageList } from 'i18n';
 import { AuthStoreContext } from 'stores/AuthStore';
+import { LocaleStoreContext } from 'stores/LocaleStore';
 
 export const NavBarWrapper = styled.div`
   background-color: #2a3a4e;
@@ -30,8 +35,9 @@ export const NavBarDivider = styled.div`
   margin: 12px 16px;
 `;
 
-const NavigationBar: FC = (props) => {
+const NavigationBar: FC = observer((props) => {
   const { deauthorize } = useContext(AuthStoreContext);
+  const { current, setLocale } = useContext(LocaleStoreContext);
 
   return (
     <NavBarWrapper>
@@ -45,6 +51,30 @@ const NavigationBar: FC = (props) => {
       </NavBarGroup>
       <NavBarGroup>
         <Action
+          dropdownContent={
+            <>
+              {Object.entries(languageList).map(([key, title]) => {
+                const optionProps =
+                  key === current
+                    ? { selected: true }
+                    : {
+                        onClick: () => {
+                          setLocale(key);
+                        },
+                      };
+                return (
+                  <Node {...optionProps} key={key}>
+                    {title}
+                  </Node>
+                );
+              })}
+            </>
+          }
+        >
+          {current.toUpperCase()}
+        </Action>
+        <NavBarDivider />
+        <Action
           icon="settings"
           dropdownContent={
             <>
@@ -53,7 +83,7 @@ const NavigationBar: FC = (props) => {
               </Item>
 
               <Item link="/users">
-                <Text>users</Text>
+                <Text>Users</Text>
               </Item>
 
               <Item link="/roles">
@@ -86,6 +116,6 @@ const NavigationBar: FC = (props) => {
       </NavBarGroup>
     </NavBarWrapper>
   );
-};
+});
 
 export default NavigationBar;

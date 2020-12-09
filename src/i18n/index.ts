@@ -4,8 +4,8 @@ import i18n from 'i18next';
 import languageDetector from 'i18next-browser-languagedetector';
 import intervalPlural from 'i18next-intervalplural-postprocessor';
 
-import en from './resources/en';
-import ru from './resources/ru';
+import en from './resources/en.json';
+import ru from './resources/ru.json';
 
 const resources = {
   en,

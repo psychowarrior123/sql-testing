@@ -14,12 +14,6 @@ export const getRoutes = (): AppRoute[] => [
       () => import(/* webpackChunkName: "dashboard" */ './pages/Dashboard'),
     ),
   },
-  {
-    key: AppRoutes.notfound,
-    component: lazy(
-      () => import(/* webpackChunkName: "dashboard" */ './pages/NotFound'),
-    ),
-  },
 ];
 
 export const getDeafultRoute = (): AppRoute => {
@@ -33,20 +27,32 @@ export const Routes: FC = memo(() => {
 
   return (
     <Layout direction="column">
+      {/* @ts-ignore */}
       <Layout.Header>
         <NavigationBar />
+        {/* @ts-ignore */}
       </Layout.Header>
+      {/* @ts-ignore */}
       <Layout.Page>
         <Switch>
           {routesList.map((route: AppRoute) => (
             <Route
+              exact
               key={route.key}
               path={route.path}
               component={route.component}
             />
           ))}
           <Redirect exact from="/" to={defaultRoute.path} />
+          <Route
+            key="notfound"
+            component={lazy(
+              () =>
+                import(/* webpackChunkName: "dashboard" */ './pages/NotFound'),
+            )}
+          />
         </Switch>
+        {/* @ts-ignore */}
       </Layout.Page>
     </Layout>
   );
