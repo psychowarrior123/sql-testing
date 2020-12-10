@@ -4,7 +4,7 @@
   "description": "CPT user interface",
   "scripts": {
     "dev": "webpack-dev-server --mode development --progress --inline --debuginfo",
-    "build": "./node_modules/.bin/webpack --mode production --progress",
+    "build": "webpack --mode production --progress",
     "reinstall": "rimraf package-lock.json && rimraf node_modules && npm i"
   },
   "author": "BI.ZONE",
