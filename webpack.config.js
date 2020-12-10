@@ -17,6 +17,8 @@ const BASE_URL = process.env.BASE_URL || '/api';
 const DEV_PROXY = process.env.DEV_PROXY || 'http://10.3.89.69:8000';
 const MODULES_PATH = path.resolve(__dirname, 'node_modules');
 
+const SRC_DIR = path.resolve(__dirname, './src');
+
 const sourceFolder = 'src';
 
 /* EXTERNAL LIBRARIES **/
@@ -134,6 +136,11 @@ const getWebpackConfig = (env, { analyze, mode }) => {
             sourceMaps: !isProduction,
           },
         },
+        // {
+        //   test: /\.(js|jsx|tsx|ts)$/,
+        //   include: [SRC_DIR, /node_modules\/(@combinezone|@bizone)/],
+        //   use: ['babel-loader'],
+        // },
         {
           test: /\.css$/,
           use: [

@@ -1,6 +1,6 @@
 # Build stage
 
-FROM node:14.15-alpine as builder
+FROM node:14.13-alpine as builder
 WORKDIR /usr/bizone-frontend
 
 COPY . .
