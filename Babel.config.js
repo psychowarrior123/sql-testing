@@ -13,6 +13,7 @@ module.exports = {
   ],
   plugins: [
     '@babel/plugin-transform-runtime',
+    '@babel/plugin-syntax-jsx',
     'babel-plugin-styled-components',
     [
       '@babel/plugin-proposal-decorators',
