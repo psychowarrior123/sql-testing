@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import registerAsGlobal from 'utils/register-as-global';
 
+import CookieService from 'services/Cookie';
+
 class Api {
   constructor() {
     const defaultHeaders = axios.defaults.headers;
@@ -51,7 +53,12 @@ class Api {
   async request(method, url, data, options = {}) {
     let result;
     let done = false;
-    const { showNotifications = true, ...config } = options;
+    let { showNotifications = true, ...config } = options;
+    let commonHeaders = {};
+
+    if (CookieService.getCookie('csrftoken')) {
+      commonHeaders['X-CSRFTOKEN'] = CookieService.getCookie('csrftoken');
+    }
 
     while (!done) {
       try {
@@ -60,6 +67,10 @@ class Api {
           method,
           [dataPropOfMethod(method)]: data,
           ...config,
+          headers: {
+            ...config.headers,
+            ...commonHeaders,
+          },
         });
         done = true;
       } catch (err) {

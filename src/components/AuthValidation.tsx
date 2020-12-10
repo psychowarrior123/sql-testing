@@ -13,12 +13,12 @@ export const AuthValidation: React.FC<any> = observer(({ children }) => {
     fetchProfile();
   }, [fetchProfile]);
 
-  if (isAuthorized) {
-    return children;
-  }
-
   if (isAuthorized === null) {
     return <Overlay fullscreen loader />;
+  }
+
+  if (isAuthorized) {
+    return children;
   }
 
   return <Redirect to="/login" />;

@@ -49,8 +49,8 @@ class AuthStore {
 
   deauthorize = async (): Promise<void> => {
     // Уточнить проверку xsrf на беке, пока удаляю вручную перед запросом
-    CookieService.deleteCookie('csrftoken');
     await AuthService.logout();
+    CookieService.deleteCookie('csrftoken');
     this.isAuthorized = false;
     this.profile = {};
   };
