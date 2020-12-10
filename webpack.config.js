@@ -14,8 +14,6 @@ const DEBUG_PORT = '8086';
 
 const BASE_DIR = process.env.BASE_DIR || '';
 const BASE_URL = process.env.BASE_URL || '/api';
-// const BASE_URL = process.env.BASE_URL || 'http://10.3.89.69:8000/';
-// const DEV_PROXY = process.env.DEV_PROXY || 'https://10.1.2.29';
 const DEV_PROXY = process.env.DEV_PROXY || 'http://10.3.89.69:8000';
 const MODULES_PATH = path.resolve(__dirname, 'node_modules');
 
